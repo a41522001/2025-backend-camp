@@ -3,19 +3,13 @@
     <div class="max-w-7xl mx-auto px-4 md:px-8 lg:px-16 xl:px-24">
       <div class="flex justify-between items-center h-20 relative">
         <h1 class="text-xl md:text-2xl font-bold text-primary-0">
-          <router-link
-            to="/"
-            @click="closeMobileMenu"
-            class="flex items-center"
-          >
-            <img src="/logo-text.png" alt="LiveFit+" class="h-6 w-auto" />
+          <router-link to="/" @click="closeMobileMenu" class="flex items-center">
+            <img src="/logo-text-v2" alt="LiveFit+" class="h-6 w-auto" />
             <span class="sr-only">LiveFit+</span>
           </router-link>
         </h1>
 
-        <nav
-          class="hidden md:flex md:absolute md:left-1/2 md:transform md:-translate-x-1/2"
-        >
+        <nav class="hidden md:flex md:absolute md:left-1/2 md:transform md:-translate-x-1/2">
           <ul class="flex gap-6">
             <li>
               <router-link
@@ -43,9 +37,7 @@
             class="bg-secondary-800 hover:bg-secondary-700 text-primary-900 font-medium text-base leading-[150%] px-5 py-3 rounded transition-colors h-12 flex items-center justify-center"
             >立即加入</router-link
           >
-          <p v-if="name" class="font-bold text-primary-0">
-            歡迎，{{ name }}您好！
-          </p>
+          <p v-if="name" class="font-bold text-primary-0">歡迎，{{ name }}您好！</p>
           <router-link
             v-if="role === 'USER'"
             to="/user/dashboard"
@@ -67,13 +59,7 @@
             class="text-primary-0 hover:text-neutral-300 transition-colors flex items-center justify-center"
             aria-label="登出"
           >
-            <svg
-              class="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path
                 stroke-linecap="round"
                 stroke-linejoin="round"
@@ -89,26 +75,9 @@
           class="md:hidden p-2 text-primary-300 hover:text-primary-0 focus:outline-none focus:ring-2 focus:ring-primary-600 rounded-lg"
           aria-label="Toggle menu"
         >
-          <svg
-            class="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              v-if="!isMobileMenuOpen"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M4 6h16M4 12h16M4 18h16"
-            />
-            <path
-              v-else
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M6 18L18 6M6 6l12 12"
-            />
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path v-if="!isMobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            <path v-else stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
       </div>
@@ -121,10 +90,7 @@
         leave-from-class="max-h-96 opacity-100"
         leave-to-class="max-h-0 opacity-0"
       >
-        <nav
-          v-if="isMobileMenuOpen"
-          class="md:hidden absolute top-20 left-0 right-0 bg-primary-900 border-b border-primary-700 pb-4 pt-4 z-50 shadow-lg"
-        >
+        <nav v-if="isMobileMenuOpen" class="md:hidden absolute top-20 left-0 right-0 bg-primary-900 border-b border-primary-700 pb-4 pt-4 z-50 shadow-lg">
           <ul class="flex flex-col gap-3 px-4">
             <li v-if="name">
               <p class="font-bold text-primary-0">歡迎，{{ name }} 您好！</p>
@@ -181,7 +147,7 @@
             </li>
             <li v-if="name">
               <button
-                @click="closeMobileMenu(), logout()"
+                @click="(closeMobileMenu(), logout())"
                 class="inline-block py-2 text-neutral-300 hover:text-primary-0 transition-all font-medium text-base leading-[150%] w-full text-left"
               >
                 登出
@@ -195,11 +161,11 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { storeToRefs } from "pinia";
-import { useRouter } from "vue-router";
-import { useUserStore } from "../stores/user.js";
-import { removeCookie } from "../utils/cookie.js";
+import { ref } from 'vue';
+import { storeToRefs } from 'pinia';
+import { useRouter } from 'vue-router';
+import { useUserStore } from '../stores/user.js';
+import { removeCookie } from '../utils/cookie.js';
 
 const router = useRouter();
 const { name, role } = storeToRefs(useUserStore());
@@ -208,9 +174,9 @@ const { setCurrentUser } = useUserStore();
 const isMobileMenuOpen = ref(false);
 
 function logout() {
-  removeCookie("token");
-  setCurrentUser({ name: "", role: "" });
-  router.push("/");
+  removeCookie('token');
+  setCurrentUser({ name: '', role: '' });
+  router.push('/');
 }
 
 const toggleMobileMenu = () => {
